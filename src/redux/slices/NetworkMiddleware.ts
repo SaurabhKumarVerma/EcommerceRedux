@@ -2,7 +2,7 @@ import NetInfo from "@react-native-community/netinfo";
 import { Middleware } from "redux";
 import { setNetworkStatus } from "./NetworkSlice";
 
-export const createMiddleware = (): Middleware => {
+export const networkMiddleWare = (): Middleware => {
   return (store) => (next) => (action) => {
     const { dispatch } = store;
     if (action.type === "network/setNetworkStatus") {

@@ -6,7 +6,7 @@ import ProductSlice from "./slices/ProductSlice";
 import CategorySlice from "./slices/Category";
 import OnboardingSlice from "./slices/OnboardingSlice";
 import NetworkSlice from "./slices/NetworkSlice";
-import { createMiddleware } from "./slices/NetworkMiddleware";
+import { networkMiddleWare } from "./slices/NetworkMiddleware";
 
 const createEnhancers = (getDefaultEnhancers: GetDefaultEnhancers<any>) => {
   if (__DEV__) {
@@ -31,7 +31,7 @@ export const store = configureStore({
   enhancers: createEnhancers,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }).concat(
-      createMiddleware()
+      networkMiddleWare()
     ),
 });
 
