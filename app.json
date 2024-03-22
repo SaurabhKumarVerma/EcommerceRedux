@@ -4,24 +4,25 @@
     "slug": "Ecommerce",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/appicon/ecom.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "splash": "./assets/images/splash.png",
+      "bundleIdentifier": "com.local.ecommerce"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/appicon/ecom.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.local.ecommerce"
     },
     "web": {
       "favicon": "./assets/favicon.png"
