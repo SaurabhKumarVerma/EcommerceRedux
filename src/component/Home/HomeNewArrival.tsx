@@ -25,7 +25,7 @@ const HomeNewArrival = () => {
   const { navigate } = useNavigation<SharedElementStackParamList>();
   const renderItem = (item, index) => {
     return (
-      <TouchableOpacity
+      <View
         style={{ paddingHorizontal: 8, paddingVertical: 10 }}
         // onPress={}
       >
@@ -40,7 +40,7 @@ const HomeNewArrival = () => {
           >
             <CardMedia source={item.image} />
           </SharedElement>
-          <View
+          {/* <View
             style={{
               backgroundColor: colors.black,
               width: 20,
@@ -54,7 +54,7 @@ const HomeNewArrival = () => {
             }}
           >
             <CardFavoriteIcon active={false} onPress={() => {}} style={{}} />
-          </View>
+          </View> */}
           <View style={styles.titleBox}>
             <Text style={styles.title} numberOfLines={1}>
               {item.title}
@@ -73,7 +73,7 @@ const HomeNewArrival = () => {
             </View>
           </View>
         </Card>
-      </TouchableOpacity>
+      </View>
     );
   };
 
@@ -81,7 +81,11 @@ const HomeNewArrival = () => {
     <View>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <Text style={{ fontWeight: "800", fontSize: 18 }}>New Arrival</Text>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() =>
+            navigate("ProductList", { item: productData.productsList })
+          }
+        >
           <Text style={{ fontWeight: "600", fontSize: 12, color: colors.gray }}>
             View All
           </Text>

@@ -5,6 +5,8 @@ import SignupSlice from "./slices/SignupSlice";
 import ProductSlice from "./slices/ProductSlice";
 import CategorySlice from "./slices/Category";
 import OnboardingSlice from "./slices/OnboardingSlice";
+import NetworkSlice from "./slices/NetworkSlice";
+import { createMiddleware } from "./slices/NetworkMiddleware";
 
 const createEnhancers = (getDefaultEnhancers: GetDefaultEnhancers<any>) => {
   if (__DEV__) {
@@ -20,14 +22,17 @@ const rootReducer = combineReducers({
   signup: SignupSlice,
   product: ProductSlice,
   category: CategorySlice,
-  onboardingSlice: OnboardingSlice
+  onboardingSlice: OnboardingSlice,
+  network: NetworkSlice,
 });
 
 export const store = configureStore({
   reducer: rootReducer,
   enhancers: createEnhancers,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({ serializableCheck: false }),
+    getDefaultMiddleware({ serializableCheck: false }).concat(
+      createMiddleware()
+    ),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

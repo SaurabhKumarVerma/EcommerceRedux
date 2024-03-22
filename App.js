@@ -28,9 +28,11 @@ export default function App() {
   }
   return (
     <GestureHandlerRootView style={styles.container}>
+      <Provider store={store}>
       <NavigationContainer ref={navigationRef}>
         <Main />
       </NavigationContainer>
+      </Provider>
     </GestureHandlerRootView>
   );
 }

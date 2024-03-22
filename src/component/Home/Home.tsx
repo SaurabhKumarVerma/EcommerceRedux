@@ -18,6 +18,8 @@ import HomeNewArrival from "./HomeNewArrival";
 import WelcomeText from "./WelcomeText";
 import Config from "react-native-config";
 import { product } from "../../redux/slices/ProductSlice";
+import { RootState } from "../../redux/store";
+import ECommHoc from "../../common/ECommHOC";
 const Home = () => {
   const dispatch = useAppDispatch();
   const { height } = useWindowDimensions();
@@ -83,6 +85,6 @@ const Home = () => {
   );
 };
 
-export default Home;
-
+const HomePage = ECommHoc(Home);
+export default HomePage;
 const styles = StyleSheet.create({});
