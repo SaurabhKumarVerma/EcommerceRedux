@@ -1,7 +1,4 @@
-import { Text, View } from "react-native";
 import React from "react";
-import { IProduct } from "../types/types";
-import HomeScreen from "../Screen/HomeScreen/HomeScreen";
 import ProductDetailsScreen from "../Screen/ProductDetailsScreen/ProductDetailsScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ProductList from "../component/ProductDetail/ProductList";
@@ -15,23 +12,17 @@ const Stack = createNativeStackNavigator();
 
 function SharedElementNavigator() {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator
+      screenOptions={{ headerShown: false, animation: "fade_from_bottom" }}
+    >
       <Stack.Screen
         name="HomeTab"
         component={MyTabs}
         options={{ headerShown: false }}
       />
 
-      <Stack.Screen
-        name="ProductDetail"
-        component={ProductDetailsScreen}
-        options={{ headerShown: false, animation: "slide_from_right" }}
-      />
-      <Stack.Screen
-        name="ProductList"
-        component={ProductList}
-        options={{ headerShown: false, animation: "slide_from_right" }}
-      />
+      <Stack.Screen name="ProductDetail" component={ProductDetailsScreen} />
+      <Stack.Screen name="ProductList" component={ProductList} />
     </Stack.Navigator>
   );
 }
