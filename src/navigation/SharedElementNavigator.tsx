@@ -5,22 +5,23 @@ import HomeScreen from "../Screen/HomeScreen/HomeScreen";
 import ProductDetailsScreen from "../Screen/ProductDetailsScreen/ProductDetailsScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ProductList from "../component/ProductDetail/ProductList";
+import MyTabs from "./BottomNavigation";
 
 export type SharedElementStackParamList = {
-  Home: undefined;
-  ProductDetail: { item: IProduct };
-  ProductList: { item: IProduct };
+  HomeTab: undefined;
 };
 
-const SharedElementNavigator = () => {
-  const Stack = createNativeStackNavigator<SharedElementStackParamList>();
+const Stack = createNativeStackNavigator();
+
+function SharedElementNavigator() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{ headerShown: false, animation: "slide_from_right" }}
+        name="HomeTab"
+        component={MyTabs}
+        options={{ headerShown: false }}
       />
+
       <Stack.Screen
         name="ProductDetail"
         component={ProductDetailsScreen}
@@ -33,6 +34,6 @@ const SharedElementNavigator = () => {
       />
     </Stack.Navigator>
   );
-};
+}
 
 export default SharedElementNavigator;

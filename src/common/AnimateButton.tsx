@@ -52,7 +52,10 @@ const AnimateButton = (props: IAnimateButton) => {
           console.log("BOOKING NOW");
         }}
       >
-        <Animated.View style={{ marginRight: 6 }}>
+        <Animated.View
+          entering={FadeInDown.delay(2000)}
+          style={{ marginRight: 6 }}
+        >
           <Ionicons name="cart-outline" color={colors.white} size={20} />
         </Animated.View>
         <Animated.Text entering={FadeInDown.delay(2000)} style={styles.text}>

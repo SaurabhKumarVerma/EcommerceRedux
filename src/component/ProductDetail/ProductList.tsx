@@ -112,6 +112,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignContent: "center",
     alignItems: "center",
+    marginHorizontal: 4,
   },
   heading: {
     fontSize: 18,

@@ -53,3 +53,10 @@ export interface ICategory {
   creationAt: string;
   updatedAt: string;
 }
+
+export enum ERouteName {
+  HOME = "home",
+  CART = "cart",
+  NOTIFICATION = "notifications-sharp",
+  PROFILE = "people",
+}

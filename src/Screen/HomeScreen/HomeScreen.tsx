@@ -1,14 +1,14 @@
-import { StyleSheet, Text, View } from "react-native";
+import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import Home from "../../component/Home/Home";
 import HomePage from "../../component/Home/Home";
+import { StatusBar } from "expo-status-bar";
 
 const HomeScreen = () => {
   return (
-    <View style={{}}>
-      {/* <Home /> */}
-      <HomePage loading={true} />
-    </View>
+    <SafeAreaView style={{}}>
+      <HomePage />
+    </SafeAreaView>
   );
 };
 
