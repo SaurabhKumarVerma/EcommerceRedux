@@ -13,6 +13,7 @@ import { colors } from "../constent/theme";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { setNetworkStatus } from "../redux/slices/NetworkSlice";
 import { RootState } from "../redux/store";
+import { StatusBar } from "expo-status-bar";
 
 const Retry = () => {
   const dispatch = useAppDispatch();
@@ -61,7 +62,12 @@ const Retry = () => {
       );
     }
   };
-  return <SafeAreaView>{networkCheck()}</SafeAreaView>;
+  return (
+    <View>
+      <StatusBar style="auto" animated hidden />
+      {networkCheck()}
+    </View>
+  );
 };
 
 export default Retry;

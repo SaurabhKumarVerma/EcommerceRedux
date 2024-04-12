@@ -1,14 +1,20 @@
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+  useWindowDimensions,
+} from "react-native";
 import React from "react";
-import Home from "../../component/Home/Home";
 import HomePage from "../../component/Home/Home";
 import { StatusBar } from "expo-status-bar";
 
 const HomeScreen = () => {
+  const { height } = useWindowDimensions();
   return (
-    <SafeAreaView style={{}}>
+    <View style={{}}>
       <HomePage />
-    </SafeAreaView>
+    </View>
   );
 };
 

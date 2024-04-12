@@ -86,7 +86,7 @@ const HomeNewArrival = () => {
             navigate("ProductList", { item: productData.productsList })
           }
         >
-          <Text style={{ fontWeight: "600", fontSize: 12, color: colors.gray }}>
+          <Text style={{ fontWeight: "600", fontSize: 16, color: colors.gray }}>
             View All
           </Text>
         </TouchableOpacity>

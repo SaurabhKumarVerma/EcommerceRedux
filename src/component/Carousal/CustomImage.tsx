@@ -69,7 +69,7 @@ const CustomImage = ({ item, x, index, size, spacer }) => {
             <Text
               style={{
                 marginVertical: 10,
-                marginHorizontal: 10,
+                marginHorizontal: 20,
                 fontSize: 12,
                 fontWeight: "700",
                 color: colors.white,

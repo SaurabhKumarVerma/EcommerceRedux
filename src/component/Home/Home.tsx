@@ -20,6 +20,7 @@ import Config from "react-native-config";
 import { product } from "../../redux/slices/ProductSlice";
 import { RootState } from "../../redux/store";
 import ECommHoc from "../../common/ECommHOC";
+import { StatusBar } from "expo-status-bar";
 const Home = () => {
   const dispatch = useAppDispatch();
   const { height } = useWindowDimensions();
@@ -62,6 +63,7 @@ const Home = () => {
   ];
   return (
     <ScrollView style={{}} showsVerticalScrollIndicator={false}>
+      <StatusBar hidden hideTransitionAnimation="fade" animated />
       <View style={{ marginHorizontal: 16, marginTop: 40 }}>
         <HomeHeader />
       </View>

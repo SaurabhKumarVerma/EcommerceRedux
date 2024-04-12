@@ -7,6 +7,7 @@ import CartScreen from "../Screen/CartScreen/CartScreen";
 import NotificationScreen from "../Screen/NotificationScreen/NotificationScreen";
 import ProfileScreen from "../Screen/ProfileScreen/ProfileScreen";
 import CustomBottomTabBar from "./CustomBottomTabBar";
+import { StatusBar } from "expo-status-bar";
 
 export type BottomNavigatorParamList = {
   Home: undefined;

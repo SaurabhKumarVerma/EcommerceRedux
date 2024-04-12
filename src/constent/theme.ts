@@ -14,6 +14,7 @@ export const colors = {
   lightSliver: "rgb(225, 226, 229)",
   aceSliver: "#AAAAAA",
   gold: "#FFD700",
+  error: "#cc0000",
 };
 
 export const shadow = {

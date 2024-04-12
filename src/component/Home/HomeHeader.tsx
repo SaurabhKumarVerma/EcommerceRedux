@@ -12,35 +12,41 @@ import Animated, {
   useDerivedValue,
   withTiming,
 } from "react-native-reanimated";
+import { DrawerActions, useNavigation } from "@react-navigation/native";
 
 const AnimatedPressable = Animated.createAnimatedComponent(TouchableOpacity);
 
 const HomeHeader = () => {
   const progress = useDerivedValue(() => withTiming(0));
-
+  const navigation = useNavigation();
   const iconStyle = useAnimatedStyle(() => ({
     transform: [{ rotate: `${progress.value * -180}deg` }],
   }));
 
+  const openDrawer = () => {
+    navigation.dispatch(DrawerActions.toggleDrawer());
+  };
   return (
-    <Animated.View
+    <AnimatedPressable
+      onPress={() => openDrawer()}
       style={styles.container}
       entering={(FadeIn.delay(1500), FadeInLeft.delay(1600))}
+      hitSlop={{ top: 80, bottom: 80, left: 80, right: 80 }}
     >
-      <AnimatedPressable
+      <Animated.View
         entering={RotateInDownLeft}
         exiting={RotateOutDownLeft}
         style={[styles.menuContainer, iconStyle]}
       >
         <Iconpack name="hamburger" size={12} color={colors.white} />
-      </AnimatedPressable>
+      </Animated.View>
       <View style={styles.imageContainer}>
         <Image
           source={require("../../../assets/favicon.png")}
           style={{ width: 20, height: 22 }}
         />
       </View>
-    </Animated.View>
+    </AnimatedPressable>
   );
 };
 

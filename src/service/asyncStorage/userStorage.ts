@@ -15,14 +15,14 @@ class ECommerceAsyncStore {
     }
   }
 
-  async saveUserRefreshToken(key: string) {
-    try {
-      await saveToken(this.REFRESH_TOKEN_KEY, key);
-    } catch (e) {
-      console.error("Error on saving user refresh data");
-      __DEV__ && reactotron.log!("ECommerceAsyncStore", e);
-    }
-  }
+  // async saveUserRefreshToken(key: string) {
+  //   try {
+  //     await saveToken(this.REFRESH_TOKEN_KEY, key);
+  //   } catch (e) {
+  //     console.error("Error on saving user refresh data");
+  //     __DEV__ && reactotron.log!("ECommerceAsyncStore", e);
+  //   }
+  // }
 
   async getAccessToken() {
     let accessToken;
@@ -38,16 +38,17 @@ class ECommerceAsyncStore {
     return accessToken;
   }
 
-  async getUserRefreshToken() {
-    let refreshToken;
-    try {
-      refreshToken = await getToken(this.REFRESH_TOKEN_KEY);
-    } catch (e) {}
+  // async getUserRefreshToken() {
+  //   let refreshToken;
+  //   try {
+  //     refreshToken = await getToken(this.REFRESH_TOKEN_KEY);
+  //   } catch (e) {}
 
-    return refreshToken;
-  }
+  //   return refreshToken;
+  // }
   async removeUserToken() {
     try {
+      console.log("Clear user data ......");
       await removeToken(this.ACCESS_TOKEN_KEY);
       await removeToken(this.REFRESH_TOKEN_KEY);
     } catch (e) {
