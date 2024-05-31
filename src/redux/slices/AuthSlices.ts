@@ -1,9 +1,11 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import apiService from "../../service/api/api";
-import { IUser } from "../../types/types";
 import { RootState } from "../store";
 import ECommerceAsyncStore from "../../service/asyncStorage/userStorage";
-import { replace } from "../../navigation/RootNavigation";
+import {
+  AsyncThunkConfig,
+  GetThunkAPI,
+} from "@reduxjs/toolkit/dist/createAsyncThunk";
 type userData = {
   token: string;
 };
@@ -12,7 +14,7 @@ export type TLoginCredential = {
   username: string;
   password: string;
 };
-export interface IUserState {
+export interface IUserState extends userData {
   userData: userData;
   isLoading: boolean;
   isSuccess: boolean;
@@ -20,7 +22,8 @@ export interface IUserState {
   errorMessage?: string;
   userName: string;
   password: string;
-  isTokenAvailable: Promise<string>;
+  isTokenAvailable: Promise<string | void> | string | null;
+  isLoggedInTrue: boolean;
 }
 
 const initialState: IUserState = {
@@ -32,11 +35,13 @@ const initialState: IUserState = {
   userName: "",
   password: "",
   isTokenAvailable: null,
+  token: null,
+  isLoggedInTrue: false,
 };
 
 export const login = createAsyncThunk(
   "login",
-  async (param: TLoginCredential, thunkApi) => {
+  async (param: TLoginCredential, thunkApi: GetThunkAPI<AsyncThunkConfig>) => {
     try {
       const response = await apiService.post<IUserState>("/auth/login", param);
       return response;
@@ -56,14 +61,13 @@ const AuthSlice = createSlice({
     password: (state, action) => {
       state.password = action.payload;
     },
-    getUserToken: (state) => {
-      let token = ECommerceAsyncStore.getAccessToken().then((res) => {
-        return JSON.stringify(res);
-      });
-      state.isTokenAvailable = token;
+    getUserToken: (state, action) => {
+      state.isTokenAvailable = action.payload;
     },
     logout: (state) => {
       ECommerceAsyncStore.removeUserToken();
+
+      state.isTokenAvailable = null;
       state.isError = false;
       state.isLoading = false;
       state.isSuccess = false;
@@ -73,18 +77,16 @@ const AuthSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(login.pending, (state: IUserState) => {
       (state.isLoading = true), (state.isError = false);
+      state.isTokenAvailable = null;
     });
     builder.addCase(
       login.fulfilled,
-      (
-        state: IUserState,
-        action: PayloadAction<IUserState | Promise<string>>
-      ) => {
+      (state: IUserState, action: PayloadAction<IUserState>) => {
         state.isLoading = false;
         state.isSuccess = true;
-        // state.isLoading = false;
-        state.userData.token = action.payload;
-        ECommerceAsyncStore.saveUserToken(state.userData.token);
+        ECommerceAsyncStore.saveUserToken(action.payload.token);
+        state.isTokenAvailable = action.payload.token;
+        // navigationRef.navigate("Home");
       }
     );
     builder.addCase(
@@ -93,6 +95,7 @@ const AuthSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = false;
         state.isError = true;
+        state.isTokenAvailable = null;
         state.errorMessage = action.payload as string;
       }
     );

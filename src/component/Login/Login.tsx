@@ -28,8 +28,8 @@ const Login = (props: Props) => {
 
   const onSubmit = () => {
     let param: TLoginCredential = {
-      username: loginuser.userName,
-      password: loginuser.password,
+      username: "mor_2314",
+      password: "83r5^_",
     };
     dispatch(login({ ...param }));
   };
@@ -67,6 +67,7 @@ const Login = (props: Props) => {
       <View style={{ marginTop: 40 }}>
         <View>
           <CustomTextInput
+            value="mor_2314"
             title="Email"
             isError={false}
             placeholder="Enter Email"
@@ -81,6 +82,7 @@ const Login = (props: Props) => {
             placeholder="Enter Password"
             onChangeText={(text) => onChangePassword(text)}
             secureTextEntry
+            value="83r5^_"
           />
         </View>
       </View>

@@ -8,15 +8,22 @@ import {
   Switch,
 } from "react-native";
 import {
+  DrawerContentComponentProps,
   DrawerContentScrollView,
   DrawerItemList,
 } from "@react-navigation/drawer";
 
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { useAppDispatch } from "../redux/hooks";
+import { logout } from "../redux/slices/AuthSlices";
 
-const CustomDrawer = (props) => {
+const CustomDrawer = (props: DrawerContentComponentProps) => {
+  const dispatch = useAppDispatch();
+  const singout = () => {
+    dispatch(logout());
+  };
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1 }} key={props.state.key}>
       <DrawerContentScrollView
         {...props}
         contentContainerStyle={{
@@ -68,7 +75,10 @@ const CustomDrawer = (props) => {
             </Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity style={{ paddingVertical: 15 }}>
+        <TouchableOpacity
+          style={{ paddingVertical: 15 }}
+          onPress={() => singout()}
+        >
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <Ionicons name="exit-outline" size={22} />
             <Text

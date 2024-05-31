@@ -10,7 +10,7 @@ import CustomDrawer from "./CustomDrawerContent";
 const Drawer = createDrawerNavigator();
 
 
-const DrawerNavigation = ({ nav }) => {
+const DrawerNavigation = () => {
   return (
     <Drawer.Navigator
       initialRouteName="Home"

@@ -8,6 +8,7 @@ class ECommerceAsyncStore {
 
   async saveUserToken(token: string) {
     try {
+      let tokenValue = JSON.stringify(token);
       await saveToken(this.ACCESS_TOKEN_KEY, token);
     } catch (e) {
       console.error("Error on saving user access data");
@@ -15,21 +16,15 @@ class ECommerceAsyncStore {
     }
   }
 
-  // async saveUserRefreshToken(key: string) {
-  //   try {
-  //     await saveToken(this.REFRESH_TOKEN_KEY, key);
-  //   } catch (e) {
-  //     console.error("Error on saving user refresh data");
-  //     __DEV__ && reactotron.log!("ECommerceAsyncStore", e);
-  //   }
-  // }
-
   async getAccessToken() {
     let accessToken;
-    // let refreshToken;
     try {
       accessToken = await getToken(this.ACCESS_TOKEN_KEY);
-      //   refreshToken = await getToken(this.REFRESH_TOKEN_KEY);
+      if (accessToken !== null) {
+        return accessToken;
+      } else {
+        return null;
+      }
     } catch (e) {
       console.error("Error on getting user data");
       __DEV__ && reactotron.log!("ECommerceAsyncStore getting Access Token", e);
@@ -38,19 +33,10 @@ class ECommerceAsyncStore {
     return accessToken;
   }
 
-  // async getUserRefreshToken() {
-  //   let refreshToken;
-  //   try {
-  //     refreshToken = await getToken(this.REFRESH_TOKEN_KEY);
-  //   } catch (e) {}
-
-  //   return refreshToken;
-  // }
   async removeUserToken() {
     try {
       console.log("Clear user data ......");
       await removeToken(this.ACCESS_TOKEN_KEY);
-      await removeToken(this.REFRESH_TOKEN_KEY);
     } catch (e) {
       console.error("Error on removing user data");
       __DEV__ && reactotron.log!("ECommerceAsyncStore removing  Token", e);

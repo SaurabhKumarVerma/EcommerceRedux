@@ -1,8 +1,9 @@
-import { createNavigationContainerRef } from "@react-navigation/native";
+import { StackActions, createNavigationContainerRef } from "@react-navigation/native";
+import { string } from "zod";
 
 export const navigationRef = createNavigationContainerRef();
 
-export function navigate(name, params) {
+export function navigate(name: string, params?: any) {
   if (navigationRef.isReady()) {
     navigationRef.navigate(name, params);
   }

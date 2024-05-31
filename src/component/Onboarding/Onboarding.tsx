@@ -11,7 +11,7 @@ const Onboarding = () => {
   const startSplash = () => (dispatch) => {
     return setTimeout(() => {
       dispatch(onStopSplash());
-    }, 5000);
+    }, 2000);
   };
   useEffect(() => {
     dispatch(startSplash());

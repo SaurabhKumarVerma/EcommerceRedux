@@ -3,7 +3,7 @@ import reactotron from "reactotron-react-native";
 
 export const saveToken = async (key: string, token: string) => {
   try {
-    await AsyncStorage.setItem(key, token);
+    await AsyncStorage.setItem(key, JSON.stringify(token));
   } catch (e) {
     console.log("PutStorageClientFailed");
     __DEV__ && reactotron.log!(e);
@@ -12,7 +12,8 @@ export const saveToken = async (key: string, token: string) => {
 
 export const getToken = async (key: string) => {
   try {
-    await AsyncStorage.getItem(key);
+    let keyValue = await AsyncStorage.getItem(key);
+    return JSON.stringify(keyValue);
   } catch (e) {
     console.log("Failed to get Token");
     __DEV__ && reactotron.log!("GetTokenError", e);
